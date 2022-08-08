@@ -172,6 +172,40 @@ namespace problem876
 		}
 	};
 }
+namespace problem1337
+{
+	class Solution {
+	public:
+		std::vector<int> kWeakestRows(std::vector<std::vector<int>>& mat, int k) {
+
+			const int n = mat.size();
+			const int m = mat[0].size();
+
+			std::multiset<std::pair<int, int>> RowStrength; // Stores (index, strength)
+			for (int i = 0; i < n; i++)
+			{
+				int j;
+				for (j = 0; j < m; j++)
+				{
+					if (mat[i][j] == 0) break;
+				}
+				RowStrength.insert({ j-1, i });
+			}
+
+			std::vector<int> result;
+			int i = 0;
+			for (auto element : RowStrength) 
+			{
+				result.push_back(element.second);
+				i++;
+				if (i >= k) break;
+			}
+
+			return result;
+
+		}
+	};
+}
 
 int main()
 {
@@ -207,6 +241,18 @@ int main()
 	std::cout << std::endl;
 	std::cout << "n = 15: ";
 	for (auto element : A.fizzBuzz(15)) { std::cout << element << " "; }
+	std::cout << std::endl;*/
+
+	/*problem1337::Solution A;
+	std::vector<std::vector<int>> Mat1;
+	Mat1.push_back({ 1, 1, 0, 0, 0 });
+	Mat1.push_back({ 1, 1, 1, 1, 0 });
+	Mat1.push_back({ 1, 0, 0, 0, 0 });
+	Mat1.push_back({ 1, 1, 0, 0, 0 });
+	Mat1.push_back({ 1, 1, 1, 1, 1 });
+
+	std::vector<int> res1 = A.kWeakestRows(Mat1, 3);
+	for (auto element : res1) { std::cout << element << " "; }
 	std::cout << std::endl;*/
 
 	return 0;

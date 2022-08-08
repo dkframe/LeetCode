@@ -7,6 +7,7 @@
 #include <set>
 #include <vector>
 #include <iterator>
+#include <cmath>
 
 namespace problem13
 {
@@ -135,6 +136,39 @@ namespace problem412
 				result.push_back((i % 3 == 0 && i % 5 == 0) ? "FizzBuzz" : (i % 3 == 0 ? "Fizz" : (i % 5 == 0 ? "Buzz" : std::to_string(i))));
 			}
 			return result;
+		}
+	};
+}
+namespace problem876 
+{
+	// Definition for singly-linked list.
+	struct ListNode {
+		int val;
+		ListNode* next;
+		ListNode() : val(0), next(nullptr) {}
+		ListNode(int x) : val(x), next(nullptr) {}
+		ListNode(int x, ListNode* next) : val(x), next(next) {}
+	};
+	class Solution {
+	public:
+		ListNode* middleNode(ListNode* head) {
+			int count = 1;
+			ListNode* node;
+			node = head;
+			while (node != nullptr)
+			{
+				node = node->next;
+				count++;
+			}
+			int middle = (count % 2 == 0) ? count / 2 : (count / 2) + 1;
+
+			node = head;
+			for (int i = 1; i < middle; i++)
+			{
+				node = node->next;
+			}
+			return node;
+
 		}
 	};
 }

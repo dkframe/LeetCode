@@ -206,6 +206,21 @@ namespace problem1337
 		}
 	};
 }
+namespace problem1342
+{
+	class Solution {
+	public:
+		int numberOfSteps(int num) {
+			int result = 0;
+			while (num > 0)
+			{
+				num = (num % 2 == 0) ? num / 2 : num - 1;
+				result++;
+			}
+			return result;
+		}
+	};
+}
 
 int main()
 {
@@ -254,6 +269,11 @@ int main()
 	std::vector<int> res1 = A.kWeakestRows(Mat1, 3);
 	for (auto element : res1) { std::cout << element << " "; }
 	std::cout << std::endl;*/
+
+	/*problem1342::Solution A;
+	std::cout << "i = 14: " << A.numberOfSteps(14) << std::endl;
+	std::cout << "i = 8: " << A.numberOfSteps(8) << std::endl;
+	std::cout << "i = 123: " << A.numberOfSteps(123) << std::endl;*/
 
 	return 0;
 }

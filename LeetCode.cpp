@@ -4,6 +4,7 @@
 #include "LeetCode.h"
 #include <string>
 #include <map>
+#include <set>
 #include <vector>
 #include <iterator>
 
@@ -74,10 +75,8 @@ namespace problem13
 	};
 
 }
-
 namespace problem234 
 {
-
 	  // Definition for singly-linked list.
 	 struct ListNode {
 	      int val;
@@ -86,34 +85,46 @@ namespace problem234
 	      ListNode(int x) : val(x), next(nullptr) {}
 	      ListNode(int x, ListNode *next) : val(x), next(next) {}
 	 };
-	 
+	 class Solution {
+	 public:
+		 bool isPalindrome(ListNode* head) {
+
+			 std::vector<int> vecF, vecR;
+			 ListNode* node;
+
+			 // Copy linked list into a vector and reverse vector
+			 node = head;
+			 while (node != nullptr)
+			 {
+				 vecF.push_back(node->val);
+				 vecR.insert(vecR.begin(), node->val);
+				 node = node->next;
+			 }
+
+			 // Compare vectors
+			 return (vecF == vecR);
+		 }
+	 };
+}
+namespace problem383
+{
 	class Solution {
 	public:
-		bool isPalindrome(ListNode* head) {
+		bool canConstruct(std::string ransomNote, std::string magazine) {
+			std::multiset<char> ranLetters, magLetters;
 
-			std::vector<int> vecF, vecR;
-			ListNode* node;
+			for (auto element : ransomNote) { ranLetters.insert(element); }
+			for (auto element : magazine) { magLetters.insert(element); }
 
-			// Copy linked list into a vector
-			node = head;
-			do 
+			for (auto it = ranLetters.begin(); it != ranLetters.end(); ++it)
 			{
-				vecF.push_back(node->val);
-				node = node->next;
-			} while (node != nullptr);
-
-			// Create reverse vector
-			for (std::vector<int>::iterator it = vecF.end(); it != vecF.begin(); --it)
-			{
-				vecR.push_back(*it);
+				if (magLetters.count(*it) < ranLetters.count(*it)) { return false; }
 			}
-
-			// Compare vectors
-			return (vecF == vecR);
+			return true;
 		}
 	};
-
 }
+
 
 int main()
 {
@@ -129,14 +140,17 @@ int main()
 	std::cout << roman4 << " = " << A.romanToInt(roman4) << std::endl;
 	*/
 
-	problem234::ListNode L1(1);
-	problem234::ListNode L2(2, &L1);
-	problem234::ListNode L3(2, &L2);
-	problem234::ListNode L4(1, &L3);
-	problem234::ListNode* Lhead = &L4;
+	problem383::Solution A;
+	std::string R1 = "a";
+	std::string M1 = "b";
+	std::string R2 = "aa";
+	std::string M2 = "ab";
+	std::string R3 = "aa";
+	std::string M3 = "aab";
 
-	problem234::Solution A;
-	bool palindrome = A.isPalindrome(Lhead);
+	std::cout << "Ransom: " << R1 << ", Magazine: " << M1 << ", Result: " << A.canConstruct(R1, M1) << std::endl;
+	std::cout << "Ransom: " << R2 << ", Magazine: " << M2 << ", Result: " << A.canConstruct(R2, M2) << std::endl;
+	std::cout << "Ransom: " << R3 << ", Magazine: " << M3 << ", Result: " << A.canConstruct(R3, M3) << std::endl;
 
 	return 0;
 }

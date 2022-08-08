@@ -221,6 +221,33 @@ namespace problem1342
 		}
 	};
 }
+namespace problem1672
+{
+	class Solution {
+	public:
+		int maximumWealth(std::vector<std::vector<int>>& accounts) {
+			const int n = accounts.size();
+			const int m = accounts[0].size();
+
+			std::vector<int> Wealth;
+			for (int i = 0; i < n; i++) 
+			{
+				int sum = 0;
+				for (int j = 0; j < m; j++)
+				{
+					sum += accounts[i][j];
+				}
+				Wealth.push_back(sum);
+			}
+
+			int result = -1;
+			for (auto element : Wealth) { if (element > result) result = element; }
+			return result;
+
+		}
+	};
+}
+
 
 int main()
 {

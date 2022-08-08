@@ -124,7 +124,20 @@ namespace problem383
 		}
 	};
 }
-
+namespace problem412
+{
+	class Solution {
+	public:
+		std::vector<std::string> fizzBuzz(int n) {
+			std::vector<std::string> result;
+			for (int i = 1; i <= n; i++)
+			{
+				result.push_back((i % 3 == 0 && i % 5 == 0) ? "FizzBuzz" : (i % 3 == 0 ? "Fizz" : (i % 5 == 0 ? "Buzz" : std::to_string(i))));
+			}
+			return result;
+		}
+	};
+}
 
 int main()
 {
@@ -140,17 +153,27 @@ int main()
 	std::cout << roman4 << " = " << A.romanToInt(roman4) << std::endl;
 	*/
 
-	problem383::Solution A;
+	/*problem383::Solution A;
 	std::string R1 = "a";
 	std::string M1 = "b";
 	std::string R2 = "aa";
 	std::string M2 = "ab";
 	std::string R3 = "aa";
 	std::string M3 = "aab";
-
 	std::cout << "Ransom: " << R1 << ", Magazine: " << M1 << ", Result: " << A.canConstruct(R1, M1) << std::endl;
 	std::cout << "Ransom: " << R2 << ", Magazine: " << M2 << ", Result: " << A.canConstruct(R2, M2) << std::endl;
-	std::cout << "Ransom: " << R3 << ", Magazine: " << M3 << ", Result: " << A.canConstruct(R3, M3) << std::endl;
+	std::cout << "Ransom: " << R3 << ", Magazine: " << M3 << ", Result: " << A.canConstruct(R3, M3) << std::endl;*/
+
+	/*problem412::Solution A;
+	std::cout << "n = 3: ";
+	for (auto element : A.fizzBuzz(3)) { std::cout << element << " "; }
+	std::cout << std::endl;
+	std::cout << "n = 5: ";
+	for (auto element : A.fizzBuzz(5)) { std::cout << element << " "; }
+	std::cout << std::endl;
+	std::cout << "n = 15: ";
+	for (auto element : A.fizzBuzz(15)) { std::cout << element << " "; }
+	std::cout << std::endl;*/
 
 	return 0;
 }

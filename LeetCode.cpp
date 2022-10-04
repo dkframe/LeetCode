@@ -9,6 +9,26 @@
 #include <iterator>
 #include <cmath>
 
+namespace problem1
+{
+	class Solution {
+	public:
+		std::vector<int> twoSum(std::vector<int>& nums, int target) {
+			int numi;
+			for (int i = 0; i < nums.size()-1; i++) 
+			{
+				numi = nums[i];
+				for (int j = i+1; j < nums.size(); j++)
+				{
+					if (numi + nums[j] == target) {
+						return { i, j };
+					}
+				}
+			}
+			return { 0, 0 }; // Failcase
+		}
+	};
+}
 namespace problem13
 {
 	class Solution {
@@ -75,6 +95,45 @@ namespace problem13
 		}
 	};
 
+}
+namespace problem112
+{
+
+	// Definition for a binary tree node.
+	struct TreeNode {
+		int val;
+		TreeNode* left;
+		TreeNode* right;
+		TreeNode() : val(0), left(nullptr), right(nullptr) {}
+		TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+		TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
+	};
+
+	class Solution {
+	public:
+		bool hasPathSum(TreeNode* root, int targetSum) {
+			if (root == NULL) { return false; }
+
+			targetSum -= (root->val);
+
+			if ((root->left) == NULL && (root->right) == NULL)
+			{
+				return (targetSum == 0);
+			}
+			else if ((root->left) != NULL && (root->right) == NULL)
+			{
+				return hasPathSum(root->left, targetSum);
+			}
+			else if ((root->left) == NULL && (root->right) != NULL)
+			{
+				return hasPathSum(root->right, targetSum);
+			}
+			else
+			{
+				return (hasPathSum(root->left, targetSum) || hasPathSum(root->right, targetSum));
+			}
+		}
+	};
 }
 namespace problem234 
 {
@@ -247,45 +306,7 @@ namespace problem1672
 		}
 	};
 }
-namespace problem112 
-{
 
-	// Definition for a binary tree node.
-	struct TreeNode {
-		int val;
-		TreeNode *left;
-		TreeNode *right;
-		TreeNode() : val(0), left(nullptr), right(nullptr) {}
-		TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-		TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-	};
- 
-	class Solution {
-	public:
-		bool hasPathSum(TreeNode* root, int targetSum) {
-			if (root == NULL) {return false;}
-
-			targetSum -= (root->val);
-
-			if ( (root->left) == NULL && (root->right) == NULL ) 
-			{
-				return (targetSum == 0);
-			}
-			else if ((root->left) != NULL && (root->right) == NULL)
-			{
-				return hasPathSum(root->left, targetSum);
-			}
-			else if ((root->left) == NULL && (root->right) != NULL)
-			{
-				return hasPathSum(root->right, targetSum);
-			}
-			else
-			{
-				return (hasPathSum(root->left, targetSum) || hasPathSum(root->right, targetSum));
-			}
-		}
-	};
-}
 
 int main()
 {
